@@ -1,0 +1,36 @@
+
+# Common configuration (applies to all profiles)
+app:
+  name: My Spring Boot Application
+  version: 1.0.0
+  max-users: 1000
+  rate-limit: 100.5
+  settings:
+    features:
+      feature1: true
+      feature2: false
+      feature3: true
+
+---
+# Development profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 8081
+logging:
+  level:
+    root: DEBUG
+
+---
+# Production profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+server:
+  port: 8081
+logging:
+  level:
+    root: INFO
