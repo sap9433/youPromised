@@ -1,6 +1,8 @@
 package com.saptarshi.youpromised;
 
 import com.saptarshi.youpromised.config.AppSettings;
+import com.saptarshi.youpromised.service.EtchInBlockChainService;
+import com.saptarshi.youpromised.service.EtchInEthService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -27,12 +29,15 @@ public class YoupromisedApplication {
 	@Autowired
 	AppSettings appSettings;
 
+	@Autowired
+	EtchInEthService etchInEthService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(YoupromisedApplication.class, args);
 	}
 	@GetMapping 
 	String 	wola() {
-		return "Hello World6";
+		return "Hello World7";
 	}
 
 	@GetMapping(path = "/promise", produces = "application/json")
@@ -44,6 +49,11 @@ public class YoupromisedApplication {
 	@GetMapping(path = "/settings", produces = "application/json")
 	public Map<String, Boolean> settings() {
 		return appSettings.getFeatures();
+	}
+
+	@GetMapping(path = "/blockchain", produces = "application/json")
+	public String blockChain() {
+		return etchInEthService.doSomething();
 	}
 
 	@Autowired
